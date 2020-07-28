@@ -1,0 +1,34 @@
+Application
+-------------
+Tech Stack :  pyspark, cassandra, airflow, docker, AWS
+Analyzer: Read data from the url directly using pyspark and preprocess data as per the requirement
+Database : Persist preprocessed data in cassandra tables
+Api: End point for data retrieval
+Airflow scheduler for trigger the spark job on a configured interval
+Use docker images for pyspark, airflow and cassandra.
+Final deployment in EC2 instance in AWS cluster.
+
+Approach
+1) Analyze the problem statement
+2) Identify sub problems
+3) Compare and find the best suitable technologies for the requirement based scalability, performance
+4) Create an end to end simple pipeline for the approach with a simple dataset
+5) Implement each sub problem starting from reading data from url
+6) Implement Processing data using pyspark for simple functionality
+7) Implement persistence for simple data set
+8) Implement data retrieval api for the small dataset
+9) Integrate each component to the pipeline
+10) If all working fine, implement the complex business logic in analyzing data. we can use the pipeline for testing
+11) Create docker image
+12) Deploy in AWS EC2 instance
+
+
+Tech stack selection criteria
+==============================
+pyspark: Ease of analyzing data in a distributed cluster using sql like queries.
+Cassandra: Self sufficient data base, master less architecture and high availability, sql query support
+Airflow : Distributed task scheduler which we can easily configure, rearrange task using simple python script
+Docker : Ease of deployment as a bundle in any platform
+AWS: currently use AWS EC2 instance for deploy the application using docker,
+     If the client is fully supported with AWS, we can simplify the whole process using,
+        ECS(for docker),Amazon keyspace(cassandra), Data pipeline for Airflow.
