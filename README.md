@@ -2,9 +2,12 @@
 Simple English Wikipedia content analyze using **pyspark, cassandra, airflow, flask** and deployed **docker** container in **AWS**
 
 ### Requirements
+* pyspark
+* cassandra
+* Docker
+* Flask
 * [spark-xml](https://github.com/databricks/spark-xml)
-* [
-spark-cassandra-connector](https://github.com/datastax/spark-cassandra-connector)
+* [spark-cassandra-connector](https://github.com/datastax/spark-cassandra-connector)
  
 ### Usage
 
