@@ -1,5 +1,5 @@
 # wiki-analyzer
-Simple English Wikipedia content analyze using pyspark, cassandra, airflow
+Simple English Wikipedia content analyze using **pyspark, cassandra, airflow, flask, docker**
 
 ### Requirements
 * [spark-xml](https://github.com/databricks/spark-xml)
