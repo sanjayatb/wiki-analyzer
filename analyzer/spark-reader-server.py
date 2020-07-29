@@ -1,7 +1,8 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, ArrayType
 from pyspark import SparkFiles
-from pyspark.sql.functions import udf,col,to_timestamp,expr,max as max_,unix_timestamp
+from pyspark.sql.window import Window
+from pyspark.sql.functions import udf,col,to_timestamp,expr,max as max_,unix_timestamp,row_number,desc
 import re
 
 APP_NAME = "Wikipedia extractor"
@@ -84,13 +85,10 @@ cat_out_dated = df_categories.alias('ct')\
 
 # cat_out_dated.sort('ct.category').show()
 
-cat_out_dated_grouped = cat_out_dated.groupBy('ct.category')\
-    .agg(max_(col('max_outdate_time')).alias('max_outdate_time_for_cat'))
-
-# final_outdate_df = cat_out_dated.alias('cl')\
-#     .join(cat_out_dated_grouped.alias('gp'),expr('cl.category=gp.category & cl.max_outdate_time=gp.max_outdate_time_for_cat'))
-#
-# final_outdate_df.sort('cl.category').show()
+cat_out_dated_grouped = cat_out_dated\
+    .withColumn("row_number",row_number().over(Window.partitionBy('ct.category').orderBy(desc('jd.max_outdate_time'))))\
+    .where('row_number = 1')\
+    .drop('row_number')
 
 df_links.write\
     .format("org.apache.spark.sql.cassandra")\
