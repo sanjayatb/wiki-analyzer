@@ -15,10 +15,10 @@ If you want to use Ad hoc query use **category_api.py** rest api
 If you want to use sql queries use **sql_api.py**
 
 ### Results
-Airflow DAG
+![Airflow DAG](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/AirflowWikiDag.JPG)
 
-pyspark Dataframes
+![pyspark Dataframes](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/SparkDataFrames.JPG)
 
-Cassandra Tables
+![Cassandra Tables](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/Cassandra_tables.JPG)
 
-Rest API
+![Rest API](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/rest_api.JPG)
