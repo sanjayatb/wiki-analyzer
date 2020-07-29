@@ -22,3 +22,5 @@ If you want to use sql queries use **sql_api.py**
 ![Cassandra Tables](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/Cassandra_tables.JPG)
 
 ![Rest API](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/rest_api.JPG)
+
+![AWS](https://github.com/sanjayatb/wiki-analyzer/blob/master/notes/AWS_EC2.JPG)
