@@ -1,5 +1,4 @@
 from airflow import DAG
-from airflow.operators.bash_operator import BashOperator
 from airflow.operators.docker_operator import DockerOperator
 from datetime import datetime, timedelta
 
@@ -25,7 +24,7 @@ dag = DAG(
     schedule_interval=timedelta(days=20))
 
 reader = DockerOperator(
-    task_id='run_reader',
+    task_id='extract_wiki_data',
     image='godatadriven/pyspark',
     api_version='auto',
     auto_remove=True,

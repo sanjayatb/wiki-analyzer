@@ -1,0 +1,15 @@
+systemctl start docker
+
+docker run -d -e DS_LICENSE=accept --name wiki_cas_1 -v $(pwd)/cassandra:/var/lib/cassandra --network=host cassandra
+
+docker exec -it wiki_cas_1 bash
+
+cqlsh
+
+CREATE KEYSPACE wiki WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+USE wiki;
+CREATE TABLE wiki.pages (id int PRIMARY KEY, title text, link text ,last_modify_date text);
+CREATE TABLE wiki.categories (category text PRIMARY KEY, title text ,max_outdate_time text);
+
+docker run --network=host -v $(pwd):/job godatadriven/pyspark --name "Wiki Extractor" --master "local[1]"  --conf "spark.ui.showConsoleProgress=True"  --jars /job/libs/*  --conf spark.cassandra.connection.host=localhost  /job/code/reader_v4.py
+

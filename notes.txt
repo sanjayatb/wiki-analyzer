@@ -32,3 +32,4 @@ Docker : Ease of deployment as a bundle in any platform
 AWS: currently use AWS EC2 instance for deploy the application using docker,
      If the client is fully supported with AWS, we can simplify the whole process using,
         ECS(for docker),Amazon keyspace(cassandra), Data pipeline for Airflow.
+
