@@ -11,5 +11,8 @@ USE wiki;
 CREATE TABLE wiki.pages (id int PRIMARY KEY, title text, link text ,last_modify_date text);
 CREATE TABLE wiki.categories (category text PRIMARY KEY, title text ,max_outdate_time text);
 
-docker run --network=host -v $(pwd):/job godatadriven/pyspark --name "Wiki Extractor" --master "local[1]"  --conf "spark.ui.showConsoleProgress=True"  --jars /job/libs/*  --conf spark.cassandra.connection.host=localhost  /job/code/reader_v4.py
+docker run --network=host -v $(pwd):/job godatadriven/pyspark --name "Wiki Extractor" --master
+"local[1]"  --conf "spark.ui.showConsoleProgress=True"  --jars /job/libs/*
+--conf spark.cassandra.connection.host=localhost  /job/code/reader_v4.py
 
+docker run -d --name wiki_airflow -v $(pwd)/dags:/usr/local/airflow/dags -p 8080:8080 puckel/docker-airflow webserver

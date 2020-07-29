@@ -1,5 +1,6 @@
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
+from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 
 default_args = {
@@ -15,9 +16,19 @@ default_args = {
 }
 
 dag = DAG(
-    'Wiki Analyzer',
+    'Wiki_Analyzer',
     default_args=default_args,
     schedule_interval=timedelta(days=20))
+
+def validate_connections():
+    print("Connections validation code goes here")
+
+validate_connectivity = PythonOperator(
+    task_id='validate_connectivity',
+    provide_context=True,
+    python_callable=validate_connections,
+    dag=dag,
+)
 
 extract_wiki_data = BashOperator(
     task_id='extract_wiki_data',
@@ -25,4 +36,4 @@ extract_wiki_data = BashOperator(
     dag=dag,
 )
 
-extract_wiki_data
+validate_connectivity >> extract_wiki_data
